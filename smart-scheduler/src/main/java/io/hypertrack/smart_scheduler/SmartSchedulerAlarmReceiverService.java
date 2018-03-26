@@ -1,23 +1,22 @@
 package io.hypertrack.smart_scheduler;
 
-import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.JobIntentService;
 
 /**
  * Created by piyush on 25/11/16.
  */
-public class SmartSchedulerAlarmReceiverService extends IntentService {
-
-    private static final String TAG = SmartSchedulerAlarmReceiverService.class.getSimpleName();
+public class SmartSchedulerAlarmReceiverService extends JobIntentService {
 
     public SmartSchedulerAlarmReceiverService() {
-        super(TAG);
+        super();
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
-        if (intent != null && intent.getExtras() != null) {
+    protected void onHandleWork(@NonNull Intent intent) {
+        if (intent.getExtras() != null) {
             Bundle bundle = intent.getExtras();
             final Integer jobID = bundle.getInt(SmartScheduler.ALARM_JOB_ID_KEY, -1);
 
