@@ -143,14 +143,16 @@ public class MainActivity extends AppCompatActivity implements SmartScheduler.Jo
                 @Override
                 public void run() {
                     Toast.makeText(MainActivity.this, "Job: " + job.getJobId() + " scheduled!", Toast.LENGTH_SHORT).show();
+
+                    Log.d(TAG, "Job: " + job.getJobId() + " scheduled!");
+
+                    if (!job.isPeriodic()) {
+                        smartJobButton.setAlpha(1.0f);
+                        smartJobButton.setEnabled(true);
+                    }
                 }
             });
-            Log.d(TAG, "Job: " + job.getJobId() + " scheduled!");
 
-            if (!job.isPeriodic()) {
-                smartJobButton.setAlpha(1.0f);
-                smartJobButton.setEnabled(true);
-            }
         }
     }
 

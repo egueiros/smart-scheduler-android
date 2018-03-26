@@ -15,6 +15,6 @@ public class SmartSchedulerAlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Intent onAlarmReceiverServiceIntent = new Intent(context, SmartSchedulerAlarmReceiverService.class);
         onAlarmReceiverServiceIntent.putExtras(intent.getExtras());
-        context.startService(onAlarmReceiverServiceIntent);
+        SmartSchedulerAlarmReceiverService.enqueueWork(context, SmartSchedulerAlarmReceiverService.class, 1, intent);
     }
 }
